@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AllPawnsMustDie.core;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,12 +10,17 @@ namespace AllPawnsMustDie
     /// <summary>
     /// Encapsulates a chess board.  The board owns the pieces and the history
     /// </summary>
+    /// 
     public class ChessBoard
     {
         #region Public Methods
         /// <summary>
         /// Create a new chess board
         /// </summary>
+        /// 
+
+        CheRo chero;
+
         public ChessBoard()
         {
             initialFEN = InitialFENPosition;
@@ -200,14 +206,8 @@ namespace AllPawnsMustDie
             // save the last capture state for external callers
             lastMoveWasCapture = moveInfo.IsCapture;
 
-            Console.WriteLine("=========================================");
-            Console.WriteLine("Start-File: " + moveInfo.Start.File);
-            Console.WriteLine("Start-Rank: " + moveInfo.Start.Rank);
-            Console.WriteLine("End-File: " + moveInfo.End.File);
-            Console.WriteLine("End-Rank: " + moveInfo.End.Rank);
-            Console.WriteLine("capture: " + moveInfo.IsCapture);
-            Console.WriteLine("=========================================");
-
+            // CheRo moves (MoveInformation)
+            CheRo.Instance.moveFromTo(moveInfo);
 
             Moves.Add(moveInfo);
 
